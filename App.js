@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
@@ -32,6 +33,16 @@ const CustomTabBarButton = ({ children, onPress }) => (
 const StackNavigator = () => {};
 
 function App() {
+  const [loaded] = useFonts({
+    Baloo2_Bold: require('./assets/font/Baloo_2/static/Baloo2-Bold.ttf'),
+    Baloo2_ExtraBold: require('./assets/font/Baloo_2/static/Baloo2-ExtraBold.ttf'),
+    Baloo2_Medium: require('./assets/font/Baloo_2/static/Baloo2-Medium.ttf'),
+    Baloo2_Regular: require('./assets/font/Baloo_2/static/Baloo2-Regular.ttf'),
+    Baloo2_SemiBold: require('./assets/font/Baloo_2/static/Baloo2-SemiBold.ttf'),
+  });
+  if (!loaded) {
+    return null;
+  }
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -63,7 +74,15 @@ function App() {
                   height: 42,
                 }}
               />
-              <Text style={{ fontSize: 20, color: '#447DB9' }}>Sơ cứu</Text>
+              <Text
+                style={{
+                  fontSize: 20,
+                  color: '#447DB9',
+                  fontFamily: 'Baloo2_SemiBold',
+                }}
+              >
+                Sơ cứu
+              </Text>
             </View>
           ),
         }}
@@ -111,7 +130,15 @@ function App() {
                   height: 42,
                 }}
               />
-              <Text style={{ fontSize: 20, color: '#447DB9' }}>Bài học</Text>
+              <Text
+                style={{
+                  fontSize: 20,
+                  color: '#447DB9',
+                  fontFamily: 'Baloo2_SemiBold',
+                }}
+              >
+                Bài học
+              </Text>
             </View>
           ),
         }}
