@@ -5,6 +5,8 @@ import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider } from 'native-base';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import DetailFA from './src/screen/DetailFA';
+import DetailLearn from './src/screen/DetailLearn';
 import FirstAid from './src/screen/FirstAid';
 import Home from './src/screen/Home';
 import Learn from './src/screen/Learn';
@@ -30,19 +32,7 @@ const CustomTabBarButton = ({ children, onPress }) => (
   </TouchableOpacity>
 );
 
-const StackNavigator = () => {};
-
-function App() {
-  const [loaded] = useFonts({
-    Baloo2_Bold: require('./assets/font/Baloo_2/static/Baloo2-Bold.ttf'),
-    Baloo2_ExtraBold: require('./assets/font/Baloo_2/static/Baloo2-ExtraBold.ttf'),
-    Baloo2_Medium: require('./assets/font/Baloo_2/static/Baloo2-Medium.ttf'),
-    Baloo2_Regular: require('./assets/font/Baloo_2/static/Baloo2-Regular.ttf'),
-    Baloo2_SemiBold: require('./assets/font/Baloo_2/static/Baloo2-SemiBold.ttf'),
-  });
-  if (!loaded) {
-    return null;
-  }
+const BottomTabScreen = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -51,7 +41,7 @@ function App() {
           position: 'absolute',
           elevation: 0,
           backgroundColor: 'white',
-          height: 108,
+          height: '14%',
         },
       })}
     >
@@ -144,6 +134,28 @@ function App() {
         }}
       />
     </Tab.Navigator>
+  );
+};
+
+function App() {
+  const [loaded] = useFonts({
+    Baloo2_Bold: require('./assets/font/Baloo_2/static/Baloo2-Bold.ttf'),
+    Baloo2_ExtraBold: require('./assets/font/Baloo_2/static/Baloo2-ExtraBold.ttf'),
+    Baloo2_Medium: require('./assets/font/Baloo_2/static/Baloo2-Medium.ttf'),
+    Baloo2_Regular: require('./assets/font/Baloo_2/static/Baloo2-Regular.ttf'),
+    Baloo2_SemiBold: require('./assets/font/Baloo_2/static/Baloo2-SemiBold.ttf'),
+  });
+  if (!loaded) {
+    return null;
+  }
+  return (
+    <>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Bottom" component={BottomTabScreen} />
+        <Stack.Screen name="DetailLearn" component={DetailLearn} />
+        <Stack.Screen name="DetailFA" component={DetailFA} />
+      </Stack.Navigator>
+    </>
   );
 }
 

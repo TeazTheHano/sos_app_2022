@@ -1,10 +1,29 @@
-import { View, Text, SafeAreaView, Image, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import Logo from '../screenComponent/Logo';
 import SearchBox from '../screenComponent/SearchBox';
-import { firstaid } from '../data/FirstAid_data';
+
+import { useFonts } from 'expo-font';
+import ListFA from '../screenComponent/ListFA';
 
 const FirstAid = () => {
+  const [loaded] = useFonts({
+    Baloo2_Bold: require('../../assets/font/Baloo_2/static/Baloo2-Bold.ttf'),
+    Baloo2_ExtraBold: require('../../assets/font/Baloo_2/static/Baloo2-ExtraBold.ttf'),
+    Baloo2_Medium: require('../../assets/font/Baloo_2/static/Baloo2-Medium.ttf'),
+    Baloo2_Regular: require('../../assets/font/Baloo_2/static/Baloo2-Regular.ttf'),
+    Baloo2_SemiBold: require('../../assets/font/Baloo_2/static/Baloo2-SemiBold.ttf'),
+  });
+  if (!loaded) {
+    return null;
+  }
   return (
     <SafeAreaView>
       <View style={{ marginTop: 47 }}>
@@ -13,14 +32,9 @@ const FirstAid = () => {
       <View style={{ marginTop: 16 }}>
         <SearchBox />
       </View>
-      <View>
-        {firstaid.map((data, index) => {
-          return (
-            <FlatList key={data.id}>
-              <Image source={data.img} style={{ width: 160, height: 141 }} />
-            </FlatList>
-          );
-        })}
+
+      <View style={{ marginTop: 10, alignItems: 'center', marginBottom: 450 }}>
+        <ListFA />
       </View>
     </SafeAreaView>
   );
