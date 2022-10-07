@@ -108,7 +108,6 @@ const DetailFA = ({ route, navigation }) => {
                   >
                     <Text
                       style={{
-                        lineHeight: 16,
                         letterSpacing: '1.2%',
                         fontFamily: 'Baloo2_Bold',
                         color: 'white',
@@ -167,7 +166,6 @@ const DetailFA = ({ route, navigation }) => {
                 >
                   <Text
                     style={{
-                      lineHeight: 16,
                       letterSpacing: '1.2%',
                       fontFamily: 'Baloo2_Bold',
                       color: 'white',

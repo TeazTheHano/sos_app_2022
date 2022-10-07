@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView } from 'react-native';
+import { View, Text, SafeAreaView, StatusBar } from 'react-native';
 import React from 'react';
 import { useFonts } from 'expo-font';
 import ListLearn from '../screenComponent/ListLearn';
@@ -16,6 +16,7 @@ const Learn = () => {
   }
   return (
     <SafeAreaView>
+      <StatusBar barStyle="dark-content" />
       <View
         style={{
           width: '100%',
