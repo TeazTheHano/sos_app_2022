@@ -2,48 +2,22 @@ import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { Entypo } from '@expo/vector-icons';
 import datas from '../data/data';
-// class categoriesInfo {
-//   text: string;
-//   category: number;
-// }
+import ListLearn from '../screenComponent/ListLearn';
 
-// const categories: categoriesInfo[] = [
-//   {
-//     text: 'Bỏng nhiệt/ điện',
-//     category: '1',
-//   },
-//   {
-//     text: 'Điện giật',
-//     category: '2',
-//   },
-//   {
-//     text: 'Hóc dị vật',
-//     category: '3',
-//   },
-//   {
-//     text: 'Say nắng',
-//     category: '4',
-//   },
-//   {
-//     text: 'Đuối nước',
-//     category: '5',
-//   },
-//   {
-//     text: 'Đột quỵ',
-//     category: '6',
-//   },
-// ];
 const DetailLearn = ({ navigation }) => {
   const allQuestions = datas;
   const [currentQuestionIndex, setcurrentQuestionIndex] = useState(0);
+  
+
   const renderQuestion = () => {
     return (
       <View>
-        <View style={{ flexDirection: 'row' }}>
+        <Text>{}</Text>
+        {/* <View style={{ flexDirection: 'row' }}>
           <Text>{currentQuestionIndex + 1} </Text>
           <Text>/ {allQuestions.length}</Text>
         </View>
-        <Text>{datas[currentQuestionIndex]?.ques}</Text>
+        <Text>{datas[currentQuestionIndex]?.ques}</Text> */}
       </View>
     );
   };
@@ -92,7 +66,7 @@ const DetailLearn = ({ navigation }) => {
               letterSpacing: '1%',
             }}
           >
-            Bước thứ 2 trong quy trình thực hiện hô hấp nhân tạo
+            Bước thứ 2 trong quy trình thực hiện hô hấp nhân tạo {categoryNum}
           </Text>
         </View>
         <View>{renderQuestion()}</View>

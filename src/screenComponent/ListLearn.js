@@ -4,17 +4,16 @@ import {
   FlatList,
   TouchableOpacity,
   ScrollView,
+  SafeAreaView,
+  TouchableOpacityComponent,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { learn } from '../data/Learn_data';
 import { useNavigation } from '@react-navigation/native';
+import datas from '../data/data';
 
-class categoriesInfo {
-  text: string;
-  category: number;
-}
 
-const categories: categoriesInfo[] = [
+const categories = [
   {
     text: 'Bỏng nhiệt/ điện',
     category: '1',
@@ -42,44 +41,89 @@ const categories: categoriesInfo[] = [
 ];
 
 const ListLearn = () => {
+  const [cateNum, setCateNum] = useState(null)
+  const [showQuiz, setShowQuiz] = useState(false)
+  const [borderColorAns, setBorderColorAns] = useState('gray')
+
   const navigation = useNavigation();
-  return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View>
-        {categories.map((info) => (
-          <TouchableOpacity
-            key={info.text}
-            onPress={() =>
-              navigation.navigate('DetailLearn', { category: info.category })
-            }
-          >
-            <View
-              style={{
-                height: 67,
-                width: 333,
-                backgroundColor: '#76B9FF',
-                marginBottom: 12,
-                borderRadius: 15,
-                alignItems: 'center',
-                justifyContent: 'center',
+
+  const listOfContent = () => {
+    return (
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View>
+          {categories.map((categories) => (
+            <TouchableOpacity
+              key={categories.category}
+              onPress={() => { console.log(categories.category),
+                setCateNum(categories.category),
+                console.log('hehe' + cateNum)
+                // navigation.navigate()
               }}
             >
-              <Text
+              <View
                 style={{
-                  textAlign: 'center',
-                  fontFamily: 'Baloo2_SemiBold',
-                  color: 'white',
-                  fontSize: 16,
+                  height: 67,
+                  width: 333,
+                  backgroundColor: '#76B9FF',
+                  marginBottom: 12,
+                  borderRadius: 15,
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
-                {info.text}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        ))}
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    fontFamily: 'Baloo2_SemiBold',
+                    color: 'white',
+                    fontSize: 16,
+                  }}
+                >
+                  {categories.text}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
+    );
+  };
+
+  const quizView = () => {
+    return (
+      <ScrollView showsVerticalScrollIndicator={false}>
+      {/* QUEST 1 */}
+      <View>
+        <Text style={{fontSize: 18, fontWeight: 'bold'}}>{datas[1][0].ques}</Text>
+        <TouchableOpacity>
+          <View style={{
+            width: 333,
+            borderWidth: 2,
+            marginTop: 10,
+            borderColor: {borderColorAns}
+          }}>
+            <Text style={{fontSize: 18, paddingVertical: 20, paddingHorizontal: 2, alignSelf: 'center', width: 300}}>{datas[1][0].choose[0]}</Text>
+          </View>
+        </TouchableOpacity>
       </View>
-    </ScrollView>
-  );
+      </ScrollView>
+    )
+  }
+
+  if (!showQuiz) {
+    return (
+      <SafeAreaView>
+        {listOfContent()}
+      </SafeAreaView>
+    )
+  } else {
+    return (
+      <SafeAreaView>
+        {quizView()}
+      </SafeAreaView>
+    )
+  }
 };
+
 
 export default ListLearn;
